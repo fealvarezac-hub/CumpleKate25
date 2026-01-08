@@ -71,7 +71,7 @@
     <!-- Pantalla de Inicio (Necesaria para música) -->
     <div id="welcome" class="overlay text-center p-6">
         <h2 class="romantic-font text-6xl mb-6">Hola, mi niña hermosa...</h2>
-        <p class="mb-8 text-xl italic max-w-md">He preparado algo especial para celebrar tus 25 años y nuestros 4 años juntos.</p>
+        <p class="mb-8 text-xl italic max-w-md">Este es un pequeñito detalle virtual para celebrar tus 25 años y nuestros 4 años juntos, considerando que te encuentras en España en este momento.</p>
         <button onclick="start()" class="bg-white text-pink-600 px-12 py-5 rounded-full font-bold shadow-2xl animate-bounce text-xl">
             ABRIR CON AMOR 💝
         </button>
@@ -86,7 +86,7 @@
     <!-- SECCIÓN 1: PORTADA -->
     <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-100 via-white to-red-50 relative">
         <div class="animate__animated animate__fadeIn">
-            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">19 de Enero, 2001 - 2026</p>
+            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">19 de Enero, 2026</p>
             <h1 class="romantic-font text-7xl md:text-9xl text-pink-600 mb-2">¡Feliz Cumple!</h1>
             <h2 class="text-3xl md:text-5xl font-light text-gray-700 italic mb-8">Katerine Gutierrez Giraldo - Mi Amor</h2>
             <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl">
@@ -110,15 +110,19 @@
                     </p>
                 </div>
             </div>
-             <!-- GEMINI FEATURE: GENERADOR DE CARTAS -->
-            <div class="gemini-feature p-8 rounded-[2rem] shadow-lg relative overflow-hidden">
-                <h4 class="font-bold text-purple-700 text-xl mb-4 flex items-center">
-                    <span class="mr-2">✨</span> Dedicatoria Mágica
+        <!-- DEDICATORIA MÁGICA CENTRADA Y AMPLIA -->
+        <div class="max-w-4xl mx-auto">
+            <div class="magic-card p-8 md:p-12 rounded-[3rem] shadow-2xl relative overflow-hidden text-center">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">✨</div>
+                <h4 class="font-bold text-purple-700 text-3xl mb-6 flex items-center justify-center gap-3">
+                    <span>✨</span> Dedicatoria Mágica <span>✨</span>
                 </h4>
-                <p class="text-sm text-purple-600 mb-4 italic">Tu Felipichín perfumado te puede redactar una nota unica para tí, basada en nuestros amor...</p>
-                <div id="letter-result" class="text-gray-700 italic mb-6 hidden border-t border-purple-200 pt-4 leading-relaxed"></div>
-                <button id="generate-letter" class="w-full bg-purple-500 text-white py-3 rounded-xl font-bold hover:bg-purple-600 transition flex justify-center items-center">
-                    Generar Mensaje Especial ✨
+                <p class="text-lg text-purple-600 mb-8 italic">Tu Felipichín perfumado ha entrenado a esta IA para escribir algo tan único como lo que siento por ti...</p>
+                
+                <div id="letter-result" class="text-gray-800 text-xl italic mb-10 hidden border-t border-purple-200 pt-8 leading-loose text-left bg-white/50 p-6 rounded-2xl"></div>
+                
+                <button id="generate-letter" class="inline-flex items-center justify-center bg-purple-600 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-purple-700 transition-all shadow-lg transform hover:scale-105">
+                    Generar Mensaje Especial 🪄
                 </button>
             </div>
         </div>
