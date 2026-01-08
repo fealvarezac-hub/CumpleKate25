@@ -404,16 +404,16 @@
     const apiKey = parte1 + parte2; 
 
 async function callGemini(userQuery, systemPrompt) {
-        if (!apiKey || apiKey.includes("AQUI_PEGA")) return "Falta la llave.";
+        if (!apiKey || apiKey.trim() === "") return "Falta la llave.";
 
-        // Usamos v1beta que es la más flexible
+        // Esta es la ruta exacta del modelo estable
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
         
-        // Estructura simplificada que evita el error 400
         const payload = {
             contents: [{
                 parts: [{
-                    text: `INSTRUCCIONES: ${systemPrompt}\n\nPREGUNTA DEL USUARIO: ${userQuery}`
+                    // Unimos todo en un solo bloque de texto para evitar errores de validación
+                    text: `Contexto: ${systemPrompt}\n\nSolicitud: ${userQuery}`
                 }]
             }]
         };
@@ -427,22 +427,20 @@ async function callGemini(userQuery, systemPrompt) {
             
             const data = await response.json();
 
+            // Si Google responde con error, aquí veremos exactamente qué dice
             if (!response.ok) {
-                console.error("Error técnico detallado:", data);
-                // Si el error es por la llave, lo verás en la consola
-                return "Mi amor, la magia se distrajo un segundo. ¡Dale al botón otra vez! ❤️";
+                console.error("DEBUG - Error de Google:", data);
+                if(data.error?.message.includes("not found")) {
+                    return "Error: Google dice que no encuentra el modelo. Revisa la consola.";
+                }
+                return "Error: " + data.error.message;
             }
             
-            // Verificación de seguridad por si la respuesta viene vacía
-            if (data.candidates && data.candidates[0].content) {
-                return data.candidates[0].content.parts[0].text;
-            } else {
-                return "Me quedé sin palabras de lo mucho que te amo. ¡Intenta de nuevo!";
-            }
+            return data.candidates[0].content.parts[0].text;
 
         } catch (error) {
-            console.error("Error de conexión:", error);
-            return "Error de conexión, pero mi amor por ti es estable. ¡Reintenta!";
+            console.error("DEBUG - Error de red:", error);
+            return "Error de conexión. ¡Prueba una vez más!";
         }
     }
 
