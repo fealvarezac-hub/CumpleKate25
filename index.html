@@ -143,6 +143,12 @@
             <div class="bg-white/10 backdrop-blur p-8 rounded-3xl border border-white/20">
                 <p class="text-2xl font-bold italic">¡Mi niña va a llegar muy muy lejos!</p>
             </div>
+            <div class="bg-white/10 backdrop-blur p-8 rounded-3xl border border-white/20 mb-8">
+                <h4 class="font-bold mb-4">📚 ¿Dudas con la carrera? Pregúntale a Filipin IA</h4>
+                <input type="text" id="tutor-input" placeholder="Ej: Explícame el equilibrio de Nash..." class="w-full p-3 rounded-xl text-gray-800 mb-4 focus:outline-none">
+                <button id="ask-tutor" class="bg-white text-blue-900 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition">Explicar con amor ✨</button>
+                <div id="tutor-result" class="mt-4 text-left text-sm italic hidden bg-white/5 p-4 rounded-xl"></div>
+            </div>
         </div>
     </section>
 
@@ -185,7 +191,7 @@
             
             <div class="max-w-xl mx-auto bg-white/60 backdrop-blur p-8 rounded-[3rem] shadow-xl border border-cyan-200">
                 <h4 class="font-bold text-cyan-900 mb-4 italic">Oráculo de Aventuras ✨</h4>
-                <p class="text-sm text-cyan-700 mb-6">Pídele a Gemini que imagine nuestro primer día frente al mar.</p>
+                <p class="text-sm text-cyan-700 mb-6">Pídele a Tu Felipe Planificador AI que imagine nuestro primer día frente al mar.</p>
                 <button id="generate-trip" class="bg-cyan-600 text-white px-8 py-3 rounded-full font-bold hover:bg-cyan-700 transition shadow-lg">
                     Planear Nuestro Atardecer ✨
                 </button>
@@ -370,89 +376,6 @@
             const resDiv = document.getElementById('trip-result');
             btn.disabled = true;
             const text = await callGemini("Describe un atardecer perfecto en el mar para nosotros, en Santa Marta, has como una especie de posible itinerario.", "Eres un planeador de sueños.");
-            resDiv.innerHTML = text.replace(/\n/g, '<br>');
-            resDiv.classList.remove('hidden');
-            btn.disabled = false;
-        });
-
-        function surpise() {
-            const container = document.getElementById('hearts');
-            for(let i=0; i<50; i++) {
-                setTimeout(() => {
-                    const h = document.createElement('div');
-                    h.innerHTML = '❤️';
-                    h.className = 'absolute text-3xl animate__animated animate__fadeOutUp';
-                    h.style.left = Math.random() * 100 + 'vw';
-                    h.style.bottom = '0vh';
-                    container.appendChild(h);
-                    setTimeout(() => h.remove(), 3000);
-                }, i * 100);
-            }
-        }
-    </script>
-
-    <script>
-        // ==========================================
-        // 1. PEGA TU API KEY AQUÍ ABAJO:
-        // ==========================================
-        const apiKey = ""; // <--- Pégala entre las comillas
-        // ==========================================
-
-        async function callGemini(prompt, systemPrompt) {
-            if (!apiKey) {
-                return "⚠️ No has configurado la API Key en el código. Los botones mágicos necesitan una llave.";
-            }
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const data = await response.json();
-                return data.candidates?.[0]?.content?.parts?.[0]?.text || "La magia está descansando, intenta de nuevo.";
-            } catch (error) {
-                return "Error de conexión con la magia.";
-            }
-        }
-
-        // Lógica de los botones (Letra, Tutor, Viaje)
-        document.getElementById('generate-letter').addEventListener('click', async () => {
-            const btn = document.getElementById('generate-letter');
-            const resDiv = document.getElementById('letter-result');
-            btn.disabled = true;
-            btn.innerHTML = 'Escribiendo...';
-            const text = await callGemini("Escribe un mensaje muy tierno para Katerine por sus 25 años y 4 años de novios.", "Eres un poeta romántico.");
-            resDiv.innerHTML = text.replace(/\n/g, '<br>');
-            resDiv.classList.remove('hidden');
-            btn.innerHTML = 'Generar Otro ✨';
-            btn.disabled = false;
-        });
-
-        document.getElementById('ask-tutor').addEventListener('click', async () => {
-            const input = document.getElementById('tutor-input').value;
-            if(!input) return;
-            const btn = document.getElementById('ask-tutor');
-            const resDiv = document.getElementById('tutor-result');
-            btn.disabled = true;
-            const text = await callGemini(input, "Eres un tutor de Economía de la UNAL. Explica a Katerine de forma amorosa.");
-            resDiv.innerHTML = text.replace(/\n/g, '<br>');
-            resDiv.classList.remove('hidden');
-            btn.disabled = false;
-        });
-
-        document.getElementById('generate-trip').addEventListener('click', async () => {
-            const btn = document.getElementById('generate-trip');
-            const resDiv = document.getElementById('trip-result');
-            btn.disabled = true;
-            const text = await callGemini("Describe un atardecer perfecto en el mar para nosotros.", "Eres un planeador de sueños.");
             resDiv.innerHTML = text.replace(/\n/g, '<br>');
             resDiv.classList.remove('hidden');
             btn.disabled = false;
