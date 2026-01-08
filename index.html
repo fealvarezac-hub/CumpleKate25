@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi niña hermosa - Katerine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #fffafa; scroll-behavior: smooth; color: #4a4a4a; }
+        .romantic-font { font-family: 'Dancing Script', cursive; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 182, 193, 0.4); }
+        .photo-frame {
+            background: white;
+            padding: 12px 12px 45px 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f0f0f0;
+            display: inline-block;
+            width: 100%;
+        }
+        .photo-frame:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 20; }
+        .photo-frame img { width: 100%; border-radius: 4px; display: block; background: #fdf2f2; min-height: 200px; }
+        .un-color { background: linear-gradient(135deg, #003366 0%, #001f3f 100%); }
+        .music-widget {
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            background: white; padding: 10px; border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.3); border: 2px solid #ff4d6d;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Música de fondo (All of Me) -->
+    <div class="music-widget animate__animated animate__fadeInRight">
+        <p class="text-[10px] font-bold text-center text-pink-600 mb-1 italic">Toca para la música 🎵</p>
+        <iframe width="140" height="80" src="https://www.youtube.com/embed/450p7goxZqg?rel=0" frameborder="0" allow="autoplay; encrypted-media" class="rounded-lg"></iframe>
+    </div>
+
+    <!-- Portada -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-100 via-white to-red-50">
+        <div class="animate__animated animate__zoomIn">
+            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">Próximo 19 de Enero</p>
+            <h1 class="romantic-font text-7xl md:text-9xl text-pink-600 mb-2">¡Feliz Cumple!</h1>
+            <h2 class="text-3xl md:text-5xl font-light text-gray-700 italic mb-8">Katerine Gutierrez Giraldo</h2>
+            <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl">
+                25 Años Brillando ✨
+            </div>
+        </div>
+        <div class="absolute bottom-10 animate__animated animate__bounce animate__infinite">
+            <div class="text-3xl text-pink-400">↓</div>
+        </div>
+    </section>
+
+    <!-- Sección 4 Años -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h3 class="romantic-font text-6xl text-pink-500 mb-4">4 Años a tu lado</h3>
+            <p class="text-gray-500 text-lg italic">Desde aquel 12 de Diciembre de 2021...</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="photo-frame transform -rotate-2">
+                <!-- REEMPLAZAR 'URL_FOTO_PRINCIPAL' CON EL LINK DE TU FOTO -->
+                <img src="https://via.placeholder.com/600x800?text=Mi+Niña+Hermosa" alt="Katerine y yo">
+                <p class="romantic-font text-3xl text-center mt-6 text-gray-700 font-bold">Mi niña hermosa</p>
+            </div>
+            <div class="space-y-8">
+                <div class="glass-card p-10 rounded-[2rem] shadow-xl border-l-8 border-pink-400">
+                    <p class="text-gray-700 text-xl italic leading-relaxed">
+                        "Eres la mujer que llena mis días de alegría. Gracias por estos 4 años de complicidad, risas y amor infinito. No imagino mi vida sin ti."
+                    </p>
+                </div>
+                <div class="glass-card p-10 rounded-[2rem] shadow-xl border-l-8 border-red-400">
+                    <h4 class="font-bold text-red-600 text-2xl mb-2 italic">Felices 25</h4>
+                    <p class="text-gray-700 text-lg">
+                        Un cuarto de siglo siendo la mejor persona que conozco. ¡Te amo, mi amorcito!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivación Economía UNAL -->
+    <section class="un-color text-white py-24 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-6 flex justify-center">
+                <div class="border-2 border-white px-6 py-2 rounded-lg font-black text-xs tracking-widest">UNIVERSIDAD NACIONAL DE COLOMBIA</div>
+            </div>
+            <h3 class="romantic-font text-6xl mb-8">La Mejor Economista 📈</h3>
+            <p class="text-2xl leading-relaxed mb-12 font-light opacity-90">
+                Mi amor, retomar tus estudios en la <b>Nacional</b> es un reto que vas a superar con creces. Tu inteligencia y visión son únicas.
+            </p>
+            <div class="bg-white text-blue-900 p-8 rounded-3xl shadow-2xl">
+                <p class="text-2xl font-bold">¡Estaré ahí para apoyarte en todo!</p>
+                <p class="text-xl mt-2 text-blue-600 italic">Y ayudarte a estudiar Integral jeje o lo que necesites.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Recuerdos -->
+    <section class="py-24 px-6 bg-white">
+        <h3 class="romantic-font text-6xl text-center text-pink-500 mb-20">Nuestra Galería</h3>
+        <div class="columns-1 sm:columns-2 md:columns-3 gap-8 space-y-8 max-w-7xl mx-auto">
+            
+            <!-- REEMPLAZAR LOS SRC CON TUS LINKS DE IMGBB O SIMILAR -->
+            <div class="photo-frame transform rotate-1">
+                <img src="https://via.placeholder.com/400x500?text=Foto+1">
+            </div>
+
+            <div class="photo-frame transform -rotate-2">
+                <img src="https://via.placeholder.com/400x500?text=Foto+2">
+            </div>
+
+            <div class="photo-frame transform rotate-3">
+                <img src="https://via.placeholder.com/400x500?text=Foto+3">
+            </div>
+
+            <div class="photo-frame transform -rotate-1">
+                <img src="https://via.placeholder.com/400x500?text=Foto+4">
+            </div>
+
+            <div class="photo-frame transform rotate-2">
+                <img src="https://via.placeholder.com/400x500?text=Foto+5">
+            </div>
+
+            <div class="photo-frame transform -rotate-3">
+                <img src="https://via.placeholder.com/400x500?text=Foto+6">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cierre -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-8 bg-pink-50 text-center">
+        <div class="glass-card p-12 md:p-20 rounded-[4rem] shadow-2xl max-w-2xl">
+            <div class="text-6xl mb-8">✈️🌊</div>
+            <h3 class="romantic-font text-7xl text-pink-600 mb-8 font-bold">Te Amo Infinito</h3>
+            <p class="text-gray-700 text-2xl leading-relaxed mb-10">
+                Este año conoceremos el mar y volaremos juntos por primera vez. ¡Serán los mejores 25 años!
+            </p>
+            
+            <button onclick="confetti()" class="bg-pink-500 text-white px-12 py-5 rounded-full font-bold text-xl shadow-xl hover:bg-pink-600 transition-all transform hover:scale-110">
+                ¡Sorpresa Final! 💝
+            </button>
+        </div>
+        <div id="hearts" class="fixed inset-0 pointer-events-none z-[200]"></div>
+    </section>
+
+    <script>
+        function confetti() {
+            const container = document.getElementById('hearts');
+            const icons = ['❤️', '💖', '🎓', '✈️', '📈'];
+            for(let i=0; i<60; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                    h.className = 'absolute text-4xl animate__animated animate__fadeOutUp';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.bottom = '0vh';
+                    h.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(h);
+                    setTimeout(() => h.remove(), 4000);
+                }, i * 80);
+            }
+        }
+    </script>
+</body>
+</html>
+
