@@ -26,7 +26,8 @@
             border-radius: 4px; 
             display: block; 
             object-fit: cover; 
-            height: 400px; 
+            height: auto; 
+            max-height: 400px; 
             background: #fff0f3; 
         }
         
@@ -132,19 +133,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 5: GALERÍA AMPLIADA -->
+    <!-- SECCIÓN 5: GALERÍA AMPLIADA (se reemplazó por carga dinámica para detectar faltantes) -->
     <section class="py-24 px-6 bg-white">
         <h3 class="romantic-font text-6xl text-center text-pink-500 mb-20">Nuestros Momentos</h3>
-        <div class="columns-1 sm:columns-2 md:columns-3 gap-8 space-y-8 max-w-7xl mx-auto">
-            <div class="photo-frame transform rotate-1"><img src="IMG-20251117-WA0006.jpg" loading="lazy"></div>
-            <div class="photo-frame transform -rotate-2"><img src="image.jpg" loading="lazy"></div>
-            <div class="photo-frame transform rotate-3"><img src="IMG-20251104-WA0006.jpg" loading="lazy"></div>
-            <div class="photo-frame transform -rotate-1"><img src="20251004_135517.jpg" loading="lazy"></div>
-            <div class="photo-frame transform rotate-2"><img src="IMG-20250914-WA0022.jpg" loading="lazy"></div>
-            <div class="photo-frame transform -rotate-3"><img src="IMG-20250907-WA0010.jpg" loading="lazy"></div>
-            <div class="photo-frame transform rotate-1"><img src="IMG-20250907-WA0009.jpg" loading="lazy"></div>
-            <div class="photo-frame transform -rotate-2"><img src="IMG-20250907-WA0011.jpg" loading="lazy"></div>
-        </div>
+        <!-- Contenedor vacío que llenaremos con JS -->
+        <div id="galleryGrid" class="columns-1 sm:columns-2 md:columns-3 gap-8 space-y-8 max-w-7xl mx-auto"></div>
     </section>
 
     <!-- SECCIÓN 6: METAS JUNTOS 2026 (NUEVA) -->
@@ -185,6 +178,68 @@
     </section>
 
     <!-- Scripts para Música y Corazones -->
+    <script>
+    // Galería dinámica: intenta cargar 9 imágenes y registra en consola las faltantes
+    (function() {
+        // Lista de las 9 imágenes que quieres mostrar (ajusta rutas / nombres si están en una carpeta)
+        const galleryImages = [
+            "IMG-20251108-WA0020.jpg",
+            "IMG-20251117-WA0006.jpg",
+            "image.jpg",
+            "IMG-20251104-WA0006.jpg",
+            "20251004_135517.jpg",
+            "IMG-20250914-WA0022.jpg",
+            "IMG-20250907-WA0010.jpg",
+            "IMG-20250907-WA0009.jpg",
+            "IMG-20250907-WA0011.jpg"
+        ];
+
+        const galleryGrid = document.getElementById("galleryGrid");
+        if (!galleryGrid) return;
+        const missing = [];
+
+        galleryImages.forEach((src, idx) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "photo-frame"; // conserva tu estilo .photo-frame
+
+            // Si quieres rotaciones distintas puedes alternarlas aquí:
+            const rotations = ["rotate-1","-rotate-2","rotate-3","-rotate-1","rotate-2","-rotate-3","rotate-1","-rotate-2","rotate-3"];
+            if (rotations[idx]) wrapper.className += " transform " + rotations[idx];
+
+            const img = document.createElement("img");
+            img.loading = "lazy";
+            img.src = src;
+            img.alt = "";
+            // Si la imagen falla, quitamos el wrapper y anotamos el nombre faltante
+            img.onerror = function() {
+                missing.push(src);
+                if (wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
+                console.warn("Imagen no encontrada:", src);
+            };
+            img.onload = function() {
+                img.style.display = "block";
+                img.style.width = "100%";
+                img.style.height = "auto";
+                img.style.objectFit = "cover";
+                img.style.maxHeight = "400px";
+            };
+
+            wrapper.appendChild(img);
+            galleryGrid.appendChild(wrapper);
+        });
+
+        // Después de un pequeño delay, mostrar en consola las faltantes (si las hay)
+        setTimeout(() => {
+            if (missing.length > 0) {
+                console.error("Imágenes faltantes en la galería:", missing);
+                console.info("Revisa que los archivos existan en el repo y que los nombres (y mayúsculas/minúsculas) coincidan exactamente. Si están en una carpeta, añade el prefijo 'carpeta/nombre.jpg' en la lista.");
+            } else {
+                console.log("Todas las imágenes de la galería cargaron correctamente.");
+            }
+        }, 1200);
+    })();
+    </script>
+
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let player;
@@ -221,4 +276,3 @@
     </script>
 </body>
 </html>
-
