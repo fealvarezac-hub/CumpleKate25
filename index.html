@@ -11,6 +11,7 @@
         body { font-family: 'Quicksand', sans-serif; background-color: #fffafa; scroll-behavior: smooth; color: #4a4a4a; overflow-x: hidden; }
         .romantic-font { font-family: 'Dancing Script', cursive; }
         .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 182, 193, 0.4); }
+        
         .photo-frame {
             background: white;
             padding: 12px 12px 45px 12px;
@@ -20,134 +21,201 @@
             display: inline-block;
             width: 100%;
         }
-        .photo-frame img { width: 100%; border-radius: 4px; display: block; object-fit: cover; height: 350px; background: #eee; }
+        .photo-frame img { 
+            width: 100%; 
+            border-radius: 4px; 
+            display: block; 
+            object-fit: cover; 
+            height: 400px; 
+            background: #fff0f3; 
+        }
+        
         .un-color { background: linear-gradient(135deg, #003366 0%, #001f3f 100%); }
+        
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #ff4d6d; z-index: 200; display: flex;
             flex-direction: column; align-items: center; justify-content: center;
             color: white; transition: opacity 0.8s ease;
         }
+
+        .timeline-line {
+            position: absolute; left: 50%; width: 2px; height: 100%;
+            background: #ffb6c1; transform: translateX(-50%);
+        }
+        @media (max-width: 768px) { .timeline-line { left: 20px; } }
     </style>
 </head>
 <body>
 
-    <div id="welcome" class="overlay">
-        <h2 class="romantic-font text-6xl mb-6">Hola, mi amor...</h2>
-        <p class="mb-8 text-center px-6 text-xl">Tengo una sorpresa para tus 25 años.</p>
+    <!-- Pantalla de Inicio (Necesaria para música) -->
+    <div id="welcome" class="overlay text-center p-6">
+        <h2 class="romantic-font text-6xl mb-6">Hola, mi niña hermosa...</h2>
+        <p class="mb-8 text-xl italic max-w-md">He preparado algo especial para celebrar tus 25 años y nuestros 4 años juntos.</p>
         <button onclick="start()" class="bg-white text-pink-600 px-12 py-5 rounded-full font-bold shadow-2xl animate-bounce text-xl">
-            TOCA AQUÍ 💝
+            ABRIR CON AMOR 💝
         </button>
     </div>
 
+    <!-- Música de fondo oculta -->
     <div class="hidden">
         <div id="player"></div>
     </div>
 
-    <!-- Portada -->
-    <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-100 via-white to-red-50">
-        <div class="animate__animated animate__zoomIn">
-            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">19 de Enero</p>
+    <!-- SECCIÓN 1: PORTADA -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-100 via-white to-red-50 relative">
+        <div class="animate__animated animate__fadeIn">
+            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">Desde el 12 de Diciembre de 2021</p>
             <h1 class="romantic-font text-7xl md:text-9xl text-pink-600 mb-2">¡Feliz Cumple!</h1>
             <h2 class="text-3xl md:text-5xl font-light text-gray-700 italic mb-8">Katerine Gutierrez Giraldo</h2>
             <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl">
-                25 Años Brillando ✨
+                25 Años de Magia ✨
             </div>
         </div>
     </section>
 
-    <!-- Sección Foto Principal Corregida -->
+    <!-- SECCIÓN 2: 4 AÑOS JUNTOS -->
     <section class="py-24 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="photo-frame transform -rotate-2">
-                <!-- USO DE RUTA RELATIVA: Solo el nombre del archivo -->
-                <img src="20250208_154159.jpg" alt="Mi niña hermosa" onerror="this.src='image.jpg'">
+            <div class="photo-frame transform -rotate-2 animate__animated animate__fadeInLeft">
+                <img src="IMG-20251108-WA0020.jpg" loading="lazy" alt="Nosotros">
                 <p class="romantic-font text-3xl text-center mt-6 text-gray-700 font-bold">Mi niña hermosa</p>
             </div>
-            <div class="space-y-8">
+            <div class="space-y-8 animate__animated animate__fadeInRight">
                 <div class="glass-card p-10 rounded-[2rem] shadow-xl border-l-8 border-pink-400">
-                    <h3 class="romantic-font text-4xl text-pink-500 mb-4">4 Años Juntos</h3>
+                    <h3 class="romantic-font text-5xl text-pink-500 mb-6">Mi compañera de vida</h3>
                     <p class="text-gray-700 text-xl italic leading-relaxed">
-                        "Desde aquel 12 de Diciembre de 2021, transformaste mi mundo. Gracias por estos 4 años de complicidad."
+                        "4 años no son nada comparado con todo lo que quiero vivir a tu lado. Gracias por ser mi apoyo, mi risa favorita y mi hogar."
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- UNAL -->
+    <!-- SECCIÓN 3: RAZONES POR LAS QUE TE AMO (NUEVA) -->
+    <section class="py-24 bg-pink-50 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="romantic-font text-6xl text-center text-pink-600 mb-16">Por qué eres única...</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl text-center shadow-md">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h4 class="font-bold text-xl mb-2">Tu Inteligencia</h4>
+                    <p class="text-gray-600 italic">Me encanta cómo ves el mundo y la pasión que le pones a la economía.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl text-center shadow-md">
+                    <div class="text-4xl mb-4">✨</div>
+                    <h4 class="font-bold text-xl mb-2">Tu Resiliencia</h4>
+                    <p class="text-gray-600 italic">Retomar tus estudios en la Nacional demuestra la mujer valiente que eres.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl text-center shadow-md">
+                    <div class="text-4xl mb-4">❤️</div>
+                    <h4 class="font-bold text-xl mb-2">Tu Corazón</h4>
+                    <p class="text-gray-600 italic">Tu forma de amar y cuidar a los que te rodean me enamora cada día más.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: MOTIVACIÓN ECONOMÍA UNAL -->
     <section class="un-color text-white py-24 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <div class="mb-6 flex justify-center">
                 <div class="border-2 border-white px-6 py-2 rounded-lg font-black text-xs tracking-widest uppercase">U. Nacional de Colombia</div>
             </div>
-            <h3 class="romantic-font text-6xl mb-8">La Mejor Economista 📈</h3>
-            <p class="text-2xl leading-relaxed mb-10 font-light opacity-90">
-                Mi amor, retomar tus estudios es de valientes. ¡Estaré para ayudarte a estudiar Integral jeje!
+            <h3 class="romantic-font text-7xl mb-8">Futura Economista 📈</h3>
+            <p class="text-2xl leading-relaxed mb-12 font-light opacity-90 italic">
+                "El camino de la Nacho es exigente, pero tú eres brillante. No olvides que aquí tienes a tu fan número uno para estudiar integral, macro o lo que venga."
             </p>
+            <div class="bg-white/10 backdrop-blur p-8 rounded-3xl border border-white/20">
+                <p class="text-2xl font-bold italic">¡Vas a lograr todo lo que te propongas!</p>
+            </div>
         </div>
     </section>
 
-    <!-- Galería con nombres corregidos para GitHub -->
+    <!-- SECCIÓN 5: GALERÍA AMPLIADA -->
     <section class="py-24 px-6 bg-white">
-        <h3 class="romantic-font text-6xl text-center text-pink-500 mb-20">Nuestra Galería</h3>
+        <h3 class="romantic-font text-6xl text-center text-pink-500 mb-20">Nuestros Momentos</h3>
         <div class="columns-1 sm:columns-2 md:columns-3 gap-8 space-y-8 max-w-7xl mx-auto">
-            <!-- Solo ponemos el nombre del archivo. GitHub Pages entiende que está en la misma carpeta -->
-            <div class="photo-frame transform rotate-1"><img src="IMG-20251117-WA0006.jpg"></div>
-            <div class="photo-frame transform -rotate-2"><img src="IMG-20251108-WA0020.jpg"></div>
-            <div class="photo-frame transform rotate-3"><img src="IMG-20251104-WA0006.jpg"></div>
-            <div class="photo-frame transform -rotate-1"><img src="20251004_135517.jpg"></div>
-            <div class="photo-frame transform rotate-2"><img src="IMG-20250914-WA0022.jpg"></div>
-            <div class="photo-frame transform -rotate-3"><img src="IMG-20250907-WA0010.jpg"></div>
-            <div class="photo-frame transform rotate-1"><img src="IMG-20250907-WA0009.jpg"></div>
-            <div class="photo-frame transform -rotate-2"><img src="IMG-20250907-WA0011.jpg"></div>
+            <div class="photo-frame transform rotate-1"><img src="IMG-20251117-WA0006.jpg" loading="lazy"></div>
+            <div class="photo-frame transform -rotate-2"><img src="image.jpg" loading="lazy"></div>
+            <div class="photo-frame transform rotate-3"><img src="IMG-20251104-WA0006.jpg" loading="lazy"></div>
+            <div class="photo-frame transform -rotate-1"><img src="20251004_135517.jpg" loading="lazy"></div>
+            <div class="photo-frame transform rotate-2"><img src="IMG-20250914-WA0022.jpg" loading="lazy"></div>
+            <div class="photo-frame transform -rotate-3"><img src="IMG-20250907-WA0010.jpg" loading="lazy"></div>
+            <div class="photo-frame transform rotate-1"><img src="IMG-20250907-WA0009.jpg" loading="lazy"></div>
+            <div class="photo-frame transform -rotate-2"><img src="IMG-20250907-WA0011.jpg" loading="lazy"></div>
         </div>
     </section>
 
-    <!-- Cierre -->
-    <section class="min-h-screen flex flex-col items-center justify-center p-8 bg-pink-50 text-center">
-        <div class="glass-card p-12 md:p-20 rounded-[4rem] shadow-2xl max-w-2xl">
-            <div class="text-7xl mb-8">✈️🌊</div>
-            <h3 class="romantic-font text-7xl text-pink-600 mb-8 font-bold">Te Amo Infinito</h3>
-            <p class="text-gray-700 text-2xl leading-relaxed mb-10">
-                Este año conoceremos el mar y volaremos juntos por primera vez. ¡Serán los mejores 25 años!
+    <!-- SECCIÓN 6: METAS JUNTOS 2026 (NUEVA) -->
+    <section class="py-24 bg-gradient-to-b from-white to-pink-50 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="romantic-font text-6xl text-pink-600 mb-12">Nuestros Sueños 2026</h3>
+            <div class="space-y-6">
+                <div class="flex items-center bg-white p-6 rounded-2xl shadow-sm border-r-4 border-blue-400">
+                    <span class="text-4xl mr-6">✈️</span>
+                    <p class="text-xl font-medium text-gray-700">Volar juntos por primera vez</p>
+                </div>
+                <div class="flex items-center bg-white p-6 rounded-2xl shadow-sm border-r-4 border-teal-400">
+                    <span class="text-4xl mr-6">🌊</span>
+                    <p class="text-xl font-medium text-gray-700">Conocer el mar de tu mano</p>
+                </div>
+                <div class="flex items-center bg-white p-6 rounded-2xl shadow-sm border-r-4 border-yellow-400">
+                    <span class="text-4xl mr-6">🏠</span>
+                    <p class="text-xl font-medium text-gray-700">Seguir construyendo nuestro futuro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CIERRE FINAL -->
+    <section class="min-h-screen flex flex-col items-center justify-center p-8 bg-pink-100 text-center">
+        <div class="glass-card p-12 md:p-20 rounded-[4rem] shadow-2xl max-w-2xl relative overflow-hidden">
+            <div class="text-7xl mb-8">💖</div>
+            <h3 class="romantic-font text-7xl text-pink-600 mb-8">Te Amo Infinito</h3>
+            <p class="text-gray-700 text-2xl leading-relaxed mb-10 italic">
+                Felices 25 años, Katerine. Eres y serás siempre el amor de mi vida.
             </p>
-            <button onclick="confetti()" class="bg-pink-500 text-white px-12 py-5 rounded-full font-bold text-xl shadow-xl hover:bg-pink-600 transition-all transform hover:scale-110">
-                ¡Lluvia de Amor! ❤️
+            
+            <button onclick="lanzarCorazones()" class="bg-pink-500 text-white px-12 py-5 rounded-full font-bold text-xl shadow-xl hover:bg-pink-600 transition-all transform hover:scale-110">
+                ¡DAME UN BESO VIRTUAL! 💋
             </button>
         </div>
         <div id="hearts" class="fixed inset-0 pointer-events-none z-[200]"></div>
     </section>
 
+    <!-- Scripts para Música y Corazones -->
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0',
-                videoId: '450p7goxZqg',
-                playerVars: { 'autoplay': 0, 'controls': 0 }
+                videoId: '450p7goxZqg', // All of Me
+                playerVars: { 'autoplay': 0, 'controls': 0, 'rel': 0 }
             });
         }
+
         function start() {
             document.getElementById('welcome').style.opacity = '0';
             setTimeout(() => document.getElementById('welcome').remove(), 800);
             if(player && player.playVideo) player.playVideo();
         }
-        function confetti() {
+
+        function lanzarCorazones() {
             const container = document.getElementById('hearts');
-            const icons = ['❤️', '💖', '🎂', '✨', '🌊'];
-            for(let i=0; i<60; i++) {
+            const icons = ['❤️', '💖', '🎂', '✨', '🌊', '📈', '✈️'];
+            for(let i=0; i<80; i++) {
                 setTimeout(() => {
                     const h = document.createElement('div');
                     h.innerHTML = icons[Math.floor(Math.random() * icons.length)];
                     h.className = 'absolute text-4xl animate__animated animate__fadeOutUp';
                     h.style.left = Math.random() * 100 + 'vw';
                     h.style.bottom = '0vh';
-                    h.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    h.style.animationDuration = (Math.random() * 2 + 3) + 's';
                     container.appendChild(h);
-                    setTimeout(() => h.remove(), 4000);
-                }, i * 80);
+                    setTimeout(() => h.remove(), 4500);
+                }, i * 60);
             }
         }
     </script>
