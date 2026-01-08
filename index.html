@@ -403,18 +403,19 @@
     const parte2 = "E3BJuss09amktI"; // Pega aquí la segunda mitad de tu llave nueva
     const apiKey = parte1 + parte2; 
 
-    async function callGemini(userQuery, systemPrompt) {
-        // Usamos el endpoint v1beta que es el que acepta systemInstruction
+async function callGemini(userQuery, systemPrompt) {
+        if (!apiKey || apiKey.includes("AQUI_PEGA")) return "Falta la llave.";
+
+        // Usamos v1beta que es la más flexible
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
         
+        // Estructura simplificada que evita el error 400
         const payload = {
-            contents: [{ 
-                role: "user", 
-                parts: [{ text: userQuery }] 
-            }],
-            systemInstruction: { 
-                parts: [{ text: systemPrompt }] 
-            }
+            contents: [{
+                parts: [{
+                    text: `INSTRUCCIONES: ${systemPrompt}\n\nPREGUNTA DEL USUARIO: ${userQuery}`
+                }]
+            }]
         };
 
         try {
@@ -427,13 +428,21 @@
             const data = await response.json();
 
             if (!response.ok) {
-                console.error("Error:", data);
-                return "Mi amor, los duendes del internet están juguetones. ¡Intenta un click más!";
+                console.error("Error técnico detallado:", data);
+                // Si el error es por la llave, lo verás en la consola
+                return "Mi amor, la magia se distrajo un segundo. ¡Dale al botón otra vez! ❤️";
             }
             
-            return data.candidates[0].content.parts[0].text;
+            // Verificación de seguridad por si la respuesta viene vacía
+            if (data.candidates && data.candidates[0].content) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                return "Me quedé sin palabras de lo mucho que te amo. ¡Intenta de nuevo!";
+            }
+
         } catch (error) {
-            return "Hubo un pequeño error técnico, pero mi amor por ti sigue intacto.";
+            console.error("Error de conexión:", error);
+            return "Error de conexión, pero mi amor por ti es estable. ¡Reintenta!";
         }
     }
 
