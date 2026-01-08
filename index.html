@@ -77,10 +77,16 @@
         </button>
     </div>
 
+    <!-- Widget de Música (Aparece tras dar click) -->
+    <div id="musicContainer" class="music-widget hidden animate__animated animate__fadeInRight">
+        <p class="text-[10px] font-bold text-pink-600 mb-2 italic tracking-wider">NUESTRA CANCIÓN 🎵</p>
+        <div id="player"></div> <!-- Aquí se carga el video de Youtube -->
+    </div>
+
     <!-- SECCIÓN 1: PORTADA -->
     <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-100 via-white to-red-50 relative">
         <div class="animate__animated animate__fadeIn">
-            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">Desde el 19 de Enero de 2021</p>
+            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">19 de Enero, 2001 - 2026</p>
             <h1 class="romantic-font text-7xl md:text-9xl text-pink-600 mb-2">¡Feliz Cumple!</h1>
             <h2 class="text-3xl md:text-5xl font-light text-gray-700 italic mb-8">Katerine Gutierrez Giraldo - Mi Amor</h2>
             <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl">
@@ -293,19 +299,40 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        // API KEY - Por favor asegúrate de que sea válida
+        const apiKey = "AIzaSyDStALLNftVdCGfr79u1h7S4-8_rt0x57E";
+
         let player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '0', width: '0',
+                height: '80', // Lo hacemos visible pero pequeño
+                width: '140',
                 videoId: '450p7goxZqg', // All of Me
-                playerVars: { 'autoplay': 0, 'controls': 0, 'rel': 0 }
+                playerVars: { 
+                    'autoplay': 0, 
+                    'controls': 1, 
+                    'rel': 0, 
+                    'modestbranding': 1,
+                    'origin': window.location.origin
+                },
+                events: {
+                    'onReady': (event) => { console.log("Reproductor listo"); }
+                }
             });
         }
 
         function start() {
+            // Quitar pantalla de inicio
             document.getElementById('welcome').style.opacity = '0';
-            setTimeout(() => document.getElementById('welcome').remove(), 800);
-            if(player && player.playVideo) player.playVideo();
+            setTimeout(() => {
+                document.getElementById('welcome').remove();
+                document.getElementById('musicContainer').classList.remove('hidden');
+            }, 800);
+            
+            // Intentar reproducir música
+            if(player && player.playVideo) {
+                player.playVideo();
+            }
         }
 
         function lanzarCorazones() {
