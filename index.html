@@ -64,6 +64,18 @@
             width: 160px;
             text-align: center;
         }
+
+        #typing-text {
+            border-right: 3px solid #ec4899; /* El cursor rosa */
+            white-space: pre-wrap; /* Para que respete los saltos de línea */
+            animation: cursor-blink 0.8s infinite;
+        }
+        
+        @keyframes cursor-blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: #ec4899; }
+        }
+        
     </style>
 </head>
 <body>
@@ -89,10 +101,16 @@
             <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm">19 de Enero, 2026</p>
             <h1 class="romantic-font text-7xl md:text-9xl text-pink-600 mb-2">¡Feliz Cumple!</h1>
             <h2 class="text-3xl md:text-5xl font-light text-gray-700 italic mb-8">Katerine Gutierrez Giraldo - Mi Amor</h2>
-            <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl">
+            <div class="inline-block bg-pink-500 text-white px-10 py-3 rounded-full text-2xl font-bold shadow-2xl mb-12">
                 25 Años de Magia ✨
             </div>
-            <p class="text-pink-400 font-bold tracking-[0.3em] mb-4 uppercase text-sm"> Poco más de 500 líneas de código en HTML de puro amor por tu Felipin aprendiendo a programar</p>
+    
+            <div class="opacity-80 flex flex-col items-center">
+                <div class="bg-black/5 p-4 rounded-lg inline-block border border-pink-200">
+                    <code id="typing-text" class="text-pink-500 font-mono text-xs md:text-sm normal-case block min-h-[1.5em]">
+                        </code>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -322,13 +340,38 @@
     function start() {
         const welcome = document.getElementById('welcome');
         welcome.style.opacity = '0';
+        
         setTimeout(() => {
             welcome.remove();
             document.getElementById('musicContainer').classList.remove('hidden');
+            
+            // Iniciar música
             if(player && player.playVideo) {
                 player.playVideo();
             }
+    
+            // --- INICIAR MÁQUINA DE ESCRIBIR AQUÍ ---
+            const textoAmor = "Poco más de 500 líneas de código en HTML de puro amor. Realizado por tu Felipín aprendiendo a programar jeje :')";
+            typeWriter(textoAmor, "typing-text", 60); 
+            
         }, 800);
+    }
+    
+    // La función que hace la magia de escribir
+    function typeWriter(text, elementId, speed) {
+        let i = 0;
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        element.innerHTML = ""; 
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
     }
 
     // 3. LÓGICA DE CORAZONES
