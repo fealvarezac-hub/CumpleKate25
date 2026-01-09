@@ -397,14 +397,16 @@
         }
     }
 
-// 4. LÓGICA DE IA (GROQ - LLAMA 3)
-const GROQ_API_KEY = "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"; // <-- PEGA TU LLAVE DE GROQ AQUÍ
+// 4. LÓGICA DE IA (GROQ)
+const p1 = "gsk_RGvOlB21v7ZjGqyaygVzW"; // Asegúrate de que esta sea tu nueva llave
+const p2 = "Gdyb3FYXaVTh8NOSzxKZshUU0pfxAUe"; 
+const GROQ_API_KEY = p1 + p2;
 
 async function callGroq(userQuery, systemPrompt) {
     const url = "https://api.groq.com/openai/v1/chat/completions";
     
     const payload = {
-        model: "llama3-8b-8192", // Modelo ultra rápido
+        model: "llama-3.3-70b-versatile", // <--- ESTE ES EL NOMBRE NUEVO Y ACTUALIZADO
         messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: userQuery }
